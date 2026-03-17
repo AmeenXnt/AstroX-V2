@@ -60,7 +60,7 @@ async function pairDevice() {
   if (!session.authState.creds.registered) {
     await delay(1500);
     num = num.replace(/[^0-9]/g, '');
-    const pair = "ABCD1234"; // You can generate a random pair string or use a fixed one
+    const pair = "ASTROXV2"; // You can generate a random pair string or use a fixed one
     const code = await session.requestPairingCode(num, pair);
     console.log("🔗 Pairing Code:", code);
   }

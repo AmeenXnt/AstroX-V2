@@ -1,0 +1,16 @@
+{
+  "name": "eypzx-baileys-example-bot",
+  "version": "1.0.0",
+  "description": "Example WhatsApp bot using @eypzx/baileys",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node index.js",
+    "pair": "node ./pair/index.js"
+  },
+  "dependencies": {
+    "@eypzx/baileys": "latest",
+    "chalk": "^5.6.2",
+    "dotenv": "^17.3.1",
+    "pino": "^8.17.0"
+  }
+}

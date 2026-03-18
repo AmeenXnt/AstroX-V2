@@ -64,7 +64,7 @@ async function startBot() {
      *Update:* ${Update}
      `
      Astro.sendMessage(
-      m.key.remoteJid,
+      Astro.user.id,
       {
         image: { url: "https://files.catbox.moe/dfrd9b.jpg" },
         caption: StartM,

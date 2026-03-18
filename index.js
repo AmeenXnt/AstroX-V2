@@ -113,16 +113,22 @@ async function startBot() {
 
     const m = messages[0]
     if (!m.message) return
-
+	  
+const chat = m.key.remoteJid;
+	  
     const msg =
       m.message.conversation ||
       m.message.extendedTextMessage?.text ||
       ""
+	  const reply = (msg) => {
+Astro.sendMessage(chat, { text: msg }, { quoted: m })
+	  }
+	  
     if (msg.startsWith(">")) {
             try {
                 let evaled = await eval(`(async () => { ${msg?.replace(">", "")} })()`);
                 if (typeof evaled !== "string") evaled = util.inspect(evaled);
-                await Astro.sendMessage(m.key.remoteJid, {text: evaled})
+                 Astro.sendMessage(m.key.remoteJid, {text: evaled})
 	    }
     }
  var Prefix = "."

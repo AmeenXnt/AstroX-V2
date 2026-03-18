@@ -1,8 +1,8 @@
 {
-  "name": "eypzx-baileys-example-bot",
+  "name": "AstroX V2",
   "version": "1.0.0",
-  "description": "Example WhatsApp bot using @eypzx/baileys",
-  "main": "bot.js",
+  "description": "MultiFunctional Bot By AmeenInt",
+  "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "pair": "node ./pair/index.js"

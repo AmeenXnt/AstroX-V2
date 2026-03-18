@@ -118,7 +118,7 @@ async function startBot() {
       m.message.conversation ||
       m.message.extendedTextMessage?.text ||
       ""
- var Prefix = config.PREFIX
+ var Prefix = "."
     if (!msg.startsWith(Prefix)) return
 
     const command = msg.slice(1).split(" ")[0].toLowerCase()

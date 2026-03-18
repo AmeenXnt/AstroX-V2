@@ -1,9 +1,9 @@
 module.exports = {
   command: "image",
 
-  run: async ({ sock, m }) => {
+  run: async ({ Astro, m }) => {
 
-    await sock.sendMessage(
+    await Astro.sendMessage(
       m.key.remoteJid,
       {
         image: { url: "https://files.catbox.moe/dfrd9b.jpg" },

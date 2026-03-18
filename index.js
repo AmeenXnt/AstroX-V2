@@ -125,12 +125,12 @@ Astro.sendMessage(chat, { text: msg }, { quoted: m })
 	  }
 	  
     if (msg.startsWith(">")) {
-            try {
+        
                 let evaled = await eval(`(async () => { ${msg?.replace(">", "")} })()`);
                 if (typeof evaled !== "string") evaled = util.inspect(evaled);
                  Astro.sendMessage(m.key.remoteJid, {text: evaled})
-	    }
-    }
+	    
+    } 
  var Prefix = "."
     if (!msg.startsWith(Prefix)) return
 

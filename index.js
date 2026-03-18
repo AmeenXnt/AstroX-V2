@@ -1,9 +1,10 @@
 const fs = require("fs")
 const path = require("path")
 const P = require("pino")
+const config = require('./config')
 
 const {
-  default: makeWASocket,
+  default: makeWAAstroet,
   useMultiFileAuthState,
   DisconnectReason,
   fetchLatestBaileysVersion
@@ -29,22 +30,67 @@ async function startBot() {
 
   const { version } = await fetchLatestBaileysVersion()
 
-  const sock = makeWASocket({
+  const Astro = makeWAAstroet({
     version,
     auth: state,
     logger: P({ level: "silent" }),
     printQRInTerminal: false
   })
 
-  sock.ev.on("creds.update", saveCreds)
+  Astro.ev.on("creds.update", saveCreds)
 
   // Connection handler
-  sock.ev.on("connection.update", (update) => {
+  Astro.ev.on("connection.update", (update) => {
 
     const { connection, lastDisconnect } = update
 
     if (connection === "open") {
       console.log("Bot connected successfully")
+        var BotName = config.BOT_NAME
+        var User = config.OWNER_NAME
+        var UserNo = config.OWNER_NUMBER
+        var Version = "_Comming Soon_"
+        var Update = "_Comming Soon_"
+        var ImgUrl = ""
+        var StartM = `
+     *BOT CONNECTED✅*
+     
+     *Version:* ${Version}
+     *Bot Name:* ${BotName}
+     *Owner:* ${User}
+     *Controller:* ${UserNo}
+     *Developer:* _AmeenInt_
+     *Dev Contact:* _+916238768108_
+     *Update:* ${Update}
+     `
+     Astro.sendMessage(
+      m.key.remoteJid,
+      {
+        image: { url: "https://files.catbox.moe/dfrd9b.jpg" },
+        caption: StartM,
+        title: "AstroX V2",
+        subtitle: "Multifunctional WhatsApp Bot",
+        footer: "© Powered By Team Keiko",
+        ai: true,
+        media: true,
+        interactiveButtons: [
+          {
+            name: "quick_reply",
+            buttonParamsJson: JSON.stringify({
+              display_text: "Check Speed",
+              id: ".ping"
+            })
+          },
+          {
+            name: "cta_url",
+            buttonParamsJson: JSON.stringify({
+              display_text: "Developer Contact",
+              url: "https://wa.me/916238768108?text=_Hello+AmeenInt🗣️_"
+            })
+          }
+        ]
+      }
+    )
     }
 
     if (connection === "close") {
@@ -63,7 +109,7 @@ async function startBot() {
   })
 
   // Message handler
-  sock.ev.on("messages.upsert", async ({ messages }) => {
+  Astro.ev.on("messages.upsert", async ({ messages }) => {
 
     const m = messages[0]
     if (!m.message) return
@@ -72,8 +118,8 @@ async function startBot() {
       m.message.conversation ||
       m.message.extendedTextMessage?.text ||
       ""
-
-    if (!msg.startsWith(".")) return
+ var Prefix = config.PREFIX
+    if (!msg.startsWith(Prefix)) return
 
     const command = msg.slice(1).split(" ")[0].toLowerCase()
 
@@ -82,7 +128,7 @@ async function startBot() {
       if (plugin.command === command) {
 
         try {
-          await plugin.run({ sock, m, msg })
+          await plugin.run({ Astro, m, msg })
         } catch (err) {
           console.log("Plugin error:", err)
         }

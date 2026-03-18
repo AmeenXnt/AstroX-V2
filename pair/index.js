@@ -1,4 +1,5 @@
 require('dotenv').config({ path: './config.env' });
+const config = require('../config')
 const fs = require('fs');
 const path = require('path');
 const pino = require('pino');
@@ -33,7 +34,7 @@ async function readSpecificJSONFiles(folderPath) {
 async function pairDevice() {
   const sessionPath = path.join(__dirname, '..', 'session');
   const authStatePath = path.resolve(sessionPath);
-  let num = process.env.NUMBER;
+  let num = config.NUMBER;
 
   if (!num) {
     console.log("Please add NUMBER=xxxxxxxxxx in config.env and restart.");

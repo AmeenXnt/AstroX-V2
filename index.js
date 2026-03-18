@@ -46,7 +46,7 @@ async function startBot() {
 
     if (connection === "open") {
       console.log("Bot connected successfully")
-        var BotName = config.BOT_NAME
+     /*   var BotName = config.BOT_NAME
         var User = config.OWNER_NAME
         var UserNo = config.OWNER_NUMBER
         var Version = "_Comming Soon_"
@@ -90,7 +90,7 @@ async function startBot() {
           }
         ]
       }
-    )
+    )*/
     }
 
     if (connection === "close") {

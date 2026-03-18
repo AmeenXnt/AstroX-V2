@@ -1,22 +1,22 @@
 module.exports = {
   command: "buttons",
 
-  run: async ({ sock, m }) => {
+  run: async ({ Astro, m }) => {
 
-    await sock.sendMessage(
+    await Astro.sendMessage(
       m.key.remoteJid,
       {
-        text: "Example buttons using @eypzx/baileys",
-        footer: "https://github.com/EypzX/baileys",
+        text: "Hey I am AstroX V2👋🏻",
+        footer: "© Powered By Team Keiko",
         buttons: [
           {
             buttonId: "repo",
-            buttonText: { displayText: "View Repository" },
+            buttonText: { displayText: "*Hey*" },
             type: 1
           },
           {
             buttonId: "docs",
-            buttonText: { displayText: "Documentation" },
+            buttonText: { displayText: "*Leave*" },
             type: 1
           }
         ],

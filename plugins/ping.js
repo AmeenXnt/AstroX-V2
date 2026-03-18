@@ -24,7 +24,7 @@ module.exports = {
      *Update:* ${Update}
      `
    await Astro.sendMessage(
-      Astro.user.id,
+      m.key.remoteJid,
       {
         image: { url: "https://files.catbox.moe/dfrd9b.jpg" },
         caption: StartM,
